@@ -1,25 +1,27 @@
 import java.io.BufferedReader;
-import java.io.InputStreamReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 
 public class Main {
-
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int t = Integer.parseInt(br.readLine());
-        for (int i = 0; i < t; i++) {
-            String[] inputs = br.readLine().split(" ");
+        int a = Integer.parseInt(br.readLine());
 
-            int r = Integer.parseInt(inputs[0]);
-            String s = inputs[1];
+        for (int i = 0; i < a; i++) {
+            String[] arr = br.readLine().split(" ");
+            int num = Integer.parseInt(arr[0]);
+            String word = arr[1];
 
-            for (int j = 0; j < s.length(); j++) {
-                for (int k = 0; k < r; k++) {
-                    System.out.print(s.charAt(j));
+//            입력받은 단어의 길이만큼 반복
+            for (int j = 0; j < word.length(); j++) {
+//                각 단어를 위에 입력받은 num만큼 반복
+                for (int k = 0; k < num; k++) {
+//                    단어하나씩 반복해서 출력
+                    System.out.print(word.charAt(j));
                 }
             }
+//            단어가 끝나면 줄바꿈
             System.out.println();
         }
-        
     }
 }
