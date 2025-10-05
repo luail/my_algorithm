@@ -13,32 +13,27 @@ public class Main {
 
         for (int i = 0; i < isbn.length(); i++) {
             char c = isbn.charAt(i);
-
+//            *을 찾으면 자릿수 기록 후 for문 한번 건너뛰기
             if (c == '*') {
                 star = i+1;
-            } else {
-                if ((i+1) % 2 == 0) {
-                    num += (c-'0')*3;
-                } else {
-                    num += c-'0';
-                }
+                continue;
             }
+
+            int digit = c - '0';
+//            만약 현재 자릿수가 2의 배수라면 가중치3 아닐경우 가중치1
+            int weight = ((i+1) % 2 == 0) ? 3 : 1;
+
+//            num에 가중치와 해당 자릿수의 숫자를 곱한값을 더함
+            num += digit * weight;
         }
         
-        if (num % 10 == 0) {
-            System.out.println(0);
-            
-        } else if (star % 2 == 0) {
-            for (int i = 1; i < 10; i++) {
-                if ((num + i*3) % 10 == 0) {
-                    System.out.println(i);
-                }
-            }
-        } else {
-            for (int i = 1; i < 10; i++) {
-                if ((num + i) % 10 == 0) {
-                    System.out.println(i);
-                }
+//        현재 *의 자릿수가 2의 배수일 경우 가중치3 아닐경우 가중치1
+        int starWeight = (star % 2 == 0) ? 3 : 1;
+        
+        for (int i = 0; i < 10; i++) {
+            if ((num + i * starWeight) % 10 == 0) {
+                System.out.println(i);
+                break;
             }
         }
     }
