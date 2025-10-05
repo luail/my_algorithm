@@ -7,20 +7,21 @@ public class Main {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
         int n = Integer.parseInt(br.readLine());
+        StringBuilder sb = new StringBuilder();
 
         for (int i = 0; i < n; i++) {
-            String line = br.readLine();
+            char[] line = br.readLine().toCharArray();
 
             int count = 0;
 
-            String ans = "YES";
+            boolean ok = true;
 
-            for (int j = 0; j < line.length(); j++) {
-                if (line.charAt(j) == '(') {
+            for (int j = 0; j < line.length; j++) {
+                if (line[j] == '(') {
                     count++;
                 } else {
                     if (count <= 0) {
-                        ans = "NO";
+                        ok = false;
                         break;
                     }
                     count--;
@@ -28,10 +29,15 @@ public class Main {
             }
 
             if (count > 0) {
-                ans = "NO";
+                ok = false;
             }
 
-            System.out.println(ans);
+            if (ok) {
+                sb.append("YES").append('\n');
+            } else {
+                sb.append("NO").append('\n');
+            }
         }
+        System.out.println(sb);
     }
 }
